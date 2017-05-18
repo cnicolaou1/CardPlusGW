@@ -1,0 +1,5 @@
+package com.cardplus.model;
+
+public abstract class AbstractBO {
+
+}

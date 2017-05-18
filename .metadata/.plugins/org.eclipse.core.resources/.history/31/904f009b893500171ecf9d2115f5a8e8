@@ -1,0 +1,63 @@
+package com.cardplus.rest;
+
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.cardplus.model.User;
+import com.cardplus.service.UserService;
+
+//The component attribute is needed below in order for the spring bean injection(Autowire) to work
+@Component
+@Path("/user")
+public class UserRest {
+	@Autowired
+	private UserService userService;
+	
+	@GET
+	@Path("getAllUsers")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> getAllUsers() {
+		return userService.getUsers();
+	}
+	
+	@GET
+	@Path("getUser")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> getUser(@PathParam("id") String id) {
+		return userService.getUsers();
+	}
+	
+//	@GET
+//	@Path("{param}")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public User printPath(@PathParam("param") String msg) {
+//		return createUser(msg);
+//	}
+//
+//	@GET
+//	@Path("/print")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public User printParam(@QueryParam("param") String msg) {
+//		return createUser(msg);
+//	}
+	
+	@POST
+	@Path("/create")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public User postUser(User user) {
+		user.setLastName("GotIt");
+		return user;
+	}
+}

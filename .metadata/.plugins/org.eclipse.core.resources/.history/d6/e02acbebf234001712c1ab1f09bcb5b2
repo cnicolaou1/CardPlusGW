@@ -1,0 +1,15 @@
+package com.cardplusGW.MyMvnJSFApp.spring.repository;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.cardplusGW.MyMvnJSFApp.model.Car;
+
+@Repository
+public interface CarRepository extends CrudRepository<Car, String>{
+	public List<Car> findByModel(String model);
+    public List<Car> findByMake(String make);	
+    public Car findByLicenseNumber(String licenseNumber);
+}

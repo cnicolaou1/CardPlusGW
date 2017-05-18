@@ -1,0 +1,58 @@
+package com.cardplus.MyMvnJSFApp.bean.spring.service;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cardplus.MyMvnJSFApp.model.User;
+import com.cardplus.MyMvnJSFApp.spring.repository.CarRepository;
+import com.cardplus.MyMvnJSFApp.spring.repository.UserRepository;
+import com.cardplus.MyMvnJSFApp.spring.repository.UserRepositoryImpl;
+
+@Service
+public class UserService implements Serializable{
+	
+	private static final long serialVersionUID = 7389500167835299205L;
+	
+	@Autowired
+	CarRepository carRepository;
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	UserRepositoryImpl userRepositoryImpl;
+	
+	public List<User> getUserByFirstName(String firstName){
+		return userRepository.findByFirstName(firstName);
+	}
+
+	
+	public List<User> getByUsersByCountryCode(String code){
+//		return userRepository.findByCountryCode(code);
+		return userRepository.findUsersByCode(code);
+	}
+	
+	public List<User> getUsers(){
+		List<User> users = new ArrayList<User>();
+		Iterable<User> it = userRepository.findAll();
+		
+		if(it instanceof List){
+			users = (List<User>)it;
+		}else{
+			userRepository.findAll().forEach(users::add);
+		}
+		
+		return users;
+	}
+	
+	public User saveUser(User user){
+		return userRepository.save(user);
+	}
+	
+	public void deleteUser(User user){
+		userRepository.delete(user);
+	}
+    
+}

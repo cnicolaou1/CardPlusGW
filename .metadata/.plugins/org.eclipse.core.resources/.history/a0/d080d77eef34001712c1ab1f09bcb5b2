@@ -1,0 +1,183 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>CardPlusWeb</groupId>
+  <artifactId>CardPlusWeb</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>CardPlusGW - CardPlusWeb</name>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- dependency>
+    	<groupId>javax.inject</groupId>    	
+    	<artifactId>javax.inject</artifactId>
+    	<version>1</version>
+    </dependency-->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+	</dependency>    
+    <!-- Apache Commons Libs -->
+    <dependency>
+    	<groupId>org.apache.commons</groupId>
+    	<artifactId>commons-collections4</artifactId>
+    	<version>4.1</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.commons</groupId>
+    	<artifactId>commons-lang3</artifactId>
+    	<version>3.5</version>
+    </dependency>
+
+    <!-- ******************* -->
+    <dependency>
+   		<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId> 
+        <version>2.2</version>
+        <scope>provided</scope>    
+    </dependency>
+    
+    <!-- Spring framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.3.3.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.3.RELEASE</version>
+		</dependency>
+		
+		<!-- needed for auto injecting spring beans into JSF beans -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.3.3.RELEASE</version>
+		</dependency>
+		
+		
+		
+		<!-- mongodb java driver -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		
+		<!-- RESTEasy Dependencies -->
+		<!-- dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.9.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-servlet-initializer</artifactId>
+			<version>3.0.9.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.jboss.resteasy</groupId>
+		    <artifactId>resteasy-jaxb-provider</artifactId>
+		    <version>3.0.9.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson2-provider</artifactId>
+			<version>3.0.9.Final</version>
+		</dependency-->
+		
+		<!-- Jersey Dependencies -->		
+        <dependency>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-spring3</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+		<dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.glassfish.jersey.media</groupId>
+        	<artifactId>jersey-media-moxy</artifactId>
+        	<version>2.9.1</version>
+        </dependency>
+        <!-- Spring data mongodb -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.9.4.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.2.4</version>
+		</dependency>
+  </dependencies>
+  <build>
+    <finalName>CardPlusWeb</finalName>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+        <!-- plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+                <outputDirectory>/data/java/servers/apache-tomcat/apache-tomcat-8.5.6/webapps</outputDirectory>
+            </configuration>
+        </plugin-->
+		<plugin>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.5.1</version>
+	        <configuration>
+	          <source>1.8</source>
+	          <target>1.8</target>
+	        </configuration>
+	      </plugin>
+	      <plugin>
+	        <artifactId>maven-war-plugin</artifactId>
+	        <version>3.0.0</version>
+	        <configuration>
+	          <warSourceDirectory>WebContent</warSourceDirectory>
+	        </configuration>
+	      </plugin>
+		<plugin>
+			<groupId>org.apache.tomcat.maven</groupId>
+			<artifactId>tomcat7-maven-plugin</artifactId>
+			<version>2.2</version>
+			<configuration>
+				<url>http://localhost:8080/manager/text</url>
+				<server>TomcatServer</server>
+				<path>/DeliverMeServer</path>
+				<username>christos</username>
+                <password>n3t1nf0</password>
+			</configuration>
+		</plugin>
+		<!--plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<executions>
+				<execution>				
+		            <goals>
+		              <goal>jar</goal>
+		            </goals>
+          		</execution>
+			</executions>
+			<configuration>
+			 	<finalName>DeliverMe-model</finalName>
+				<includes>
+					<include>**/model/*</include>
+				</includes>			 
+			</configuration>
+		</plugin-->
+    </plugins>    
+  </build>
+</project>

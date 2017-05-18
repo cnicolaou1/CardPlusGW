@@ -1,0 +1,57 @@
+package com.cardplus.MyMvnJSFApp.model;
+
+import java.io.Serializable;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class Country implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9111754512563047942L;
+	@Id
+	private String id;
+	private String code;
+	private String description;
+	
+	@Version
+	private long version;
+	
+	public Country() {
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
+	}
+}

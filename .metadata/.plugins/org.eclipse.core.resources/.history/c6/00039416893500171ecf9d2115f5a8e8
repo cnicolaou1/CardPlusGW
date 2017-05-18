@@ -1,0 +1,5 @@
+package com.cardplus.spring.repository;
+
+public abstract class AbstractModelService {
+
+}
